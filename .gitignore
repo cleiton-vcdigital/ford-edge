@@ -5,3 +5,5 @@ template
 public/*.html
 public/css
 public/js
+
+**/.DS_Store
