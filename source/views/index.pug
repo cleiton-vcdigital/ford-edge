@@ -1,0 +1,399 @@
+doctype html
+html(lang="pt-br")
+
+
+	head
+			meta(charset="utf-8")
+			meta(name="format-detection", content="telephone=no")
+			meta(name="msapplication-tap-highlight", content="no")
+			meta(name="viewport", content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width")
+
+			title !{page.title} | !{page.company}
+			
+			link(rel="stylesheet", type="text/css", href="css/main.css")
+	
+
+	body
+		.preload
+			img.img-fluid.mb-4(src="images/brand.png")
+			a(href="#", class="btn btn-preload") Clique para começar
+
+		.container-fluid
+			.row.wrapper
+				header.col-lg-4.col-xl-3.text-light 
+
+					//- Navbar
+					nav.navbar.navbar-expand-lg.navbar-dark
+
+						//- Title
+						h1 !{page.header.title}
+
+						//- Toggler
+							button(class="navbar-toggler navbar-toggler-right border-0", type="button", data-toggle="collapse", data-target="#menu", aria-controls="menu", aria-expanded="false")
+								span.navbar-toggler-icon
+
+						//- Menu
+						div.collapse.navbar-collapse(id="menu")
+							ul.navbar-nav
+								each item in page.menu
+									li.nav-item
+										a.nav-link.text-primary(href="#"+item.target, data-target=item.target) 
+											i(class=item.icon)
+											span.d-block.mt-lg-1 !{item.label}
+					
+					hr
+					
+					h2 !{page.header.lead}
+
+					p.lead !{page.carro.description}
+
+				main.col-lg-8.col-xl-9
+					.container-fluid
+
+						.row.wrapper.align-items-lg-baseline
+							.col-lg-6.order-0
+								figure.mb-0(id="figure")
+									img.img-car.img-fluid(src=page.carro.image, alt=page.title)
+							
+							.col-lg-6.d-flex.flex-column.flex-lg-row.justify-content-lg-between.pr-lg-5.order-5.order-lg-1(id="features")
+								aside.featured-items
+									ul.list-inline
+										each item in page.carro.features
+											li.list-inline-item !{item}
+								
+								aside.suggested-price
+									p 
+										strong Preço sugerido
+									h3 R$ !{page.financiamento.preco},00
+						
+							hr.order-2.d-lg-none
+
+							.col-lg-8.px-lg-5.order-1.order-lg-3(id="cores")
+								h4.mt-4.mt-lg-0 Cores disponíveis
+
+								.row
+									each color, index in page.cores
+
+										.col-6.col-lg-4.col-xl-3
+											div.form-check
+												if index == 0
+													input.form-check-input(type="radio", name="color", id=color.id, value=color.label, checked)
+													label.form-check-label(for=color.id) !{color.title}
+												else
+													input.form-check-input(type="radio", name="color", id=color.id, value=color.label)
+													label.form-check-label(for=color.id) !{color.title}
+
+
+							.col-lg-4.px-lg-5.order-3.order-lg-4(id="acabamento")
+								h4 Acabamento interno
+
+								.row
+									each item, index in page.acabamento
+
+										.col-6
+											div.form-check
+												if index == 0
+													input.form-check-input(type="radio", name="acabamento", id=item.id, value=item.title, checked)
+													label.form-check-label(for=item.id) !{item.title}
+												else
+													input.form-check-input(type="radio", name="acabamento", id=item.id, value=item.title)
+													label.form-check-label(for=item.id) !{item.title}
+						
+							hr.order-4.d-lg-none
+
+							.col.order-6(id="financiamento")
+								.jumbotron.text-dark
+									h4 Simular financiamento
+
+									.form-row
+										.col-lg-4
+											div.form-group
+												label(for="entrada") 
+													span Entrada
+													output(for="entrada") 
+												input(name="entrada", id="entrada", type="range", class="custom-range", min="2500", max="232800", step="500")
+
+										.col-lg-4.ml-lg-auto
+											div(class="form-group")
+												label(for="parcelas") 
+													output(for="parcelas") 24 
+													span.mx-1 parcelas de 
+													output(for="valor") 
+												input(name="parcelas", id="parcelas", type="range", class="custom-range", min="6", max="48", step="1", value="24")
+									
+										.col-lg-3.text-right
+											button.btn.btn-primary(type="submit", data-toggle="modal", data-target="#confirmaModal") Contratar
+
+							//- footer.mt-auto.p-3.bg-dark.order-8.w-100
+
+
+				//- Infos
+				div(id="infos" class="panel hidden")
+						div(id="carouselInfos" class="carousel slide" data-ride="carousel" data-interval=10000)
+								
+								button(class="btn btn-close") &times;
+								
+								div(class="carousel-inner")
+										ol(class="carousel-indicators")
+												li(data-target="#carouselInfos" data-slide-to="0" class="active") Potência
+												li(data-target="#carouselInfos" data-slide-to="1") Sofisticação
+												li(data-target="#carouselInfos" data-slide-to="2") Performance
+												li(data-target="#carouselInfos" data-slide-to="3") Segurança
+												li(data-target="#carouselInfos" data-slide-to="4") Tecnologia
+												
+										div(class="carousel-item active")
+												div(class="poster order-1 text-left")
+														img(class="img-fluid" src="images/slide-edge-1.jpg")
+
+												div(class="caption order-0 text-right")
+														h2 Potência aliada à sofisticação
+														p Cada detalhe no Edge é pensado para seu conforto e segurança ao volante. O motor v6 3.5 Duratec TiVCT com potência de 284 cavalos, ainda traz a tecnologia exclusiva Ford, como o Ford Power, um sistema exclusivo de partida sem chave, Câmera Frontal com visão 180°, Piloto Automático Adaptativo com Alerta de Colisão e Direção Elétrica Variável com Sistema Ativo de Direção, que ajuda a ter uma direção mais precisa e um torque mais agressivo.
+
+
+										div(class="carousel-item")
+												div(class="poster order-0 text-right")
+														img(class="img-fluid" src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/splitter_2114648278/splitter1/image/image.imgs.full.high.jpeg/1469824086487.jpeg")
+
+												div(class="caption order-1 text-left")
+														h2 Exterior e Interior
+														p Por dentro e por fora, você encontra a sofisticação do Edge em todos os detalhes. Vidros com isolamento acústicos garantem conforto ao dirigir, assim como os ajustes elétricos da posição do volante e dos bancos. Já as rodas de liga leve 20” e as luzes de posição em LED dão mais imponência ao visual do crossover.
+
+
+										div(class="carousel-item")
+												div(class="poster order-1 text-left")
+														img(class="img-fluid" src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/box_1130448896/generalParsys/splitter/splitter1/image/image.imgs.full.high.jpeg/1469825520377.jpeg")
+
+												div(class="caption order-0 text-right")
+														h2 Performance
+														p O motor V6 3.5 Duratec TiVCT é um dos mais potentes da categoria, com reconhecimento em premiações internacionais. Toda sua performance se destaca com maior perfeição em conjunto com a Transmissão Sequencial de 6 velocidades com Trocas de Marchas Manuais no Volante, além da Tração Inteligente AWD e a Direção Elétrica Variável com ajuste dinâmico da direção.
+
+
+										div(class="carousel-item")
+												div(class="poster order-0 text-right")
+														img(class="img-fluid" src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/splitter_1562704132/splitter1/image/image.imgs.full.high.jpeg/1469825792120.jpeg.jpeg")
+
+												div(class="caption order-1 text-left")
+														h2 Segurança
+														p Diversas tecnologias exclusivas estão presentes no Edge para garantir a sua segurança. Além dos 8 Airbags, os Cintos de Segurança Laterais Traseiros também inflam em caso de colisão. Atravessar um cruzamento fica mais fácil com a Câmera Frontal com visão 180°. O Sistema de Permanência em Faixa corrige sua rota e alerta para você não sair da trajetória, mas caso você queira mudar, o Sistema de Monitoramento de Ponto Cego (BLIS) ajuda você.
+														
+
+										div(class="carousel-item")
+												div(class="poster order-1 text-left")
+														img(class="img-fluid" src="images/slide-edge-5.jpg")
+
+												div(class="caption order-0 text-right")
+														h2 Tecnologia
+														p O SYNC® 3 com Tela de 8” é um sistema multimídia que permite interação intuitiva com o veículo e se conecta com o Android Auto e Apple Carplay. Você ainda conta com Sistema de Estacionamento Automático, abertura inteligente do porta-malas com sensor de presença e sistema de DVD no encosto de cabeça dos bancos dianteiros.
+
+
+								a(class="carousel-controls carousel-control-prev" href="#carouselInfos" role="button" data-slide="prev")
+										span(class="carousel-control-prev-icon" aria-hidden="true")
+										
+								a(class="carousel-controls carousel-control-next" href="#carouselInfos" role="button" data-slide="next")
+										span(class="carousel-control-next-icon" aria-hidden="true")
+
+				//- Fotos
+				div(id="fotos" class="panel hidden")
+						header
+								h2
+									img(src="images/icons/camera.svg" class="img-fluid")
+									span O Seu Edge em vários ângulos
+									
+								button(class="btn btn-close") &times;  
+
+						div(class="galeria card-group")
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/1.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image/image.imgs.full.high.jpeg/1527881583975.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/2.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_1936502778/image.imgs.full.high.jpeg/1527881584883.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/3.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_1714260190/image.imgs.full.high.jpeg/1527881585828.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/2018/nameplate/gallery-trigger/overlay/Edge_SYNC-galeria.jpg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_56148762/image.imgs.full.high.jpg/1527881634631.jpg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/5.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_568257237/image.imgs.full.high.jpg/1527881588222.jpg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/6.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_113277355/image.imgs.full.high.jpeg/1527881590397.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/2018/nameplate/gallery-trigger/overlay/fbr-edge-gallerytrigger-overlay-07.jpg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_861907412/image.imgs.full.high.jpg/1527881590845.jpg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="https://www.ford.com.br/content/dam/Ford/website-assets/latam/br/nameplate/Novo-edge/overview/Gallery-Trigger/overlay/1.jpeg" data-lightbox="fotos")
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_533574754/image.imgs.full.high.jpeg/1469821933811.jpeg" class="img-fluid")
+		
+				//- Vídeos
+				div(id="videos" class="panel hidden")
+
+						header
+								h2
+										img(src="images/icons/video.svg" class="img-fluid")
+										| Vídeos do Edge
+
+								button(class="btn btn-close") &times;
+
+
+						div(class="galeria card-group")
+
+								div(class="card")
+										a(href="/" data-video="assets/videos/4082198820001_5028145711001_s-2.mp4" data-toggle="modal" data-target="#videoModal")
+												i.fas.fa-play-circle
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image/image.imgs.full.high.jpeg/1527881583975.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="#" data-video="assets/videos/4082198820001_5028145711001_s-2.mp4" data-toggle="modal" data-target="#videoModal")
+												i.fas.fa-play-circle
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_1936502778/image.imgs.full.high.jpeg/1527881584883.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="#" data-video="assets/videos/4082198820001_5028145711001_s-2.mp4" data-toggle="modal" data-target="#videoModal")
+												i.fas.fa-play-circle
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_1714260190/image.imgs.full.high.jpeg/1527881585828.jpeg" class="img-fluid")
+
+
+								div(class="card")
+										a(href="#" data-video="assets/videos/4082198820001_5028145711001_s-2.mp4" data-toggle="modal" data-target="#videoModal")
+												i.fas.fa-play-circle
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_56148762/image.imgs.full.high.jpg/1527881634631.jpg" class="img-fluid")
+
+
+								//- div(class="card")
+										a(href="#" data-video="assets/videos/4082198820001_5028145711001_s-2.mp4" data-toggle="modal" data-target="#videoModal")
+												i.fas.fa-play-circle
+												img(src="https://www.ford.com.br/content/ford/br/pt_br/home/suvs-e-crossovers/novo-edge/_jcr_content/par/gallerytrigger_1471733862/generalParsys/image_533574754/image.imgs.full.high.jpeg/1469821933811.jpeg" class="img-fluid")
+
+				//- Modal Confirma
+				div(class="modal fade" id="confirmaModal" tabindex="-1" role="dialog" aria-labelledby="confirmaModalLabel" aria-hidden="true")
+						div(class="modal-dialog" role="document")
+								div(class="modal-header align-items-center")
+									picture.w-75
+										img(id="foto" src="" class="img-fluid" alt="")
+									h2
+
+								div(class="modal-body")
+										form(id="sendForm")
+												div(class="form-row")
+
+														ul.w-100
+																li
+																		//- h6 Opções
+																		div(class="d-flex flex-wrap align-items-start justify-content-between")
+																				div.mb-3
+																						strong Cor
+																						br
+																						span(id="cor")
+
+																				div
+																						strong Acabamento Interno
+																						br
+																						span(id="acabamento")
+
+																li &nbsp; &nbsp;
+
+																li
+																	//- h6 Financiamento
+
+																	div(class="d-flex flex-wrap align-items-start justify-content-between")
+																				div.mb-3
+																						strong Entrada
+																						br
+																						span(id="entrada")
+
+																				div.mb-3
+																						strong Parcelas
+																						br
+																						span(id="parcelas")
+																						| x 
+																						span(id="valor")
+
+																li
+																	div(class="d-flex flex-wrap align-items-start")
+																				div
+																						strong Total
+																						br
+																						span(id="preco")
+
+
+														section
+																div(class="form-group")
+																		label(for="cliente_nome") Seu nome
+																		input(name="cliente_nome" type="text" class="form-control" required)
+
+																div(class="form-group")
+																		label(for="cliente_email") Seu email
+																		input(name="cliente_email" type="email" class="form-control" required)
+
+																div(class="form-group")
+																		label(for="cliente_telefone") Telefone
+																		input(name="cliente_telefone" type="text" class="form-control" required)
+
+																div(class="form-group")
+																		div(class="form-check")
+																				input(class="form-check-input" type="checkbox" id="cliente_testdrive")
+																				label(class="form-check-label" for="cliente_testdrive") Agendar um Test Drive
+
+																hr
+
+																div(class="form-group mt-5")
+																		div(class="form-check")
+																				input(class="form-check-input" type="checkbox" id="cliente_veiculo")
+																				label(class="form-check-label" for="cliente_veiculo") Quero incluir meu carro na transação
+																						
+																fieldset(disabled, class="disabled")
+																		div(class="form-group")
+																				label(for="cliente_veiculo_marca") Qual a marca?
+																				input(name="cliente_veiculo_marca" type="text" class="form-control" required)
+
+																		div(class="form-group")
+																				label(for="cliente_veiculo_modelo") Modelo
+																				input(name="cliente_veiculo_modelo" type="text" class="form-control" required)
+
+																		div(class="form-group")
+																				label(for="cliente_veiculo_versao") Versão
+																				input(name="cliente_veiculo_versao" type="text" class="form-control" required)
+
+																		div(class="form-group")
+																				label(for="cliente_veiculo_ano") Ano
+																				input(name="cliente_veiculo_ano" type="text" class="form-control" required)
+
+								div(class="modal-footer position-relative")
+										button(type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close")
+												span(aria-hidden="true") Voltar
+
+										button(type="submit" class="btn btn-primary btn-enviar") Enviar
+
+				//- Modal Video
+				div(class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true")
+						div(class="modal-dialog modal-lg" role="document")
+								div(class="modal-content")
+										button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+												span(aria-hidden="true") &times;
+										div(class="modal-body px-0")
+											//- iframe(src="https://www.youtube.com/embed/RpDtpTPDkBQ" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+
+		script(src="js/jquery.min.js")
+		script(src="js/bootstrap.bundle.min.js")
+		script(src="https://kit.fontawesome.com/b8acbb4103.js", crossorigin="anonymous")
+		script(src="js/imagelightbox.min.js")
+		script(src="js/main.min.js")

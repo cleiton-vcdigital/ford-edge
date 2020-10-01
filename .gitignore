@@ -1,0 +1,7 @@
+node_modules
+
+template
+
+public/*.html
+public/css
+public/js

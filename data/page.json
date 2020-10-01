@@ -1,0 +1,114 @@
+{
+  "company": "Ford",
+  "title": "Edge Titanium AWD 3.5 V6",
+  "description": "Cada detalhe no Edge é pensado para seu conforto e segurança ao volante.",
+  "keywords": "ford, novo edge st, edge st, familia performance ford, suv, suv ford",
+  "logo": "images/logos/logo_ford.png",
+
+  "carro": {
+    "id": "edge-titanium",
+    "name": "Edge Titanium AWD 3.5 V6",
+    "description": "Cada detalhe no Edge é pensado para seu conforto e segurança ao volante. O motor v6 3.5 Duratec TiVCT com potência de 284 cavalos, ainda traz a tecnologia exclusiva Ford, como o Ford Power, um sistema exclusivo de partida sem chave, Câmera Frontal com visão 180°, Piloto Automático Adaptativo com Alerta de Colisão e Direção Elétrica Variável com Sistema Ativo de Direção, que ajuda a ter uma direção mais precisa e um torque mais agressivo.",
+    "image": "images/veiculos/ford-edge-azul-belize.png",
+    "features": {
+      "0": "<strong>Câmera Frontal</strong> <br>com visão 180°",
+      "1": "<strong>Tração Inteligente</strong> <br>AWD"
+    }
+  },
+
+  "header": {
+    "title": "<strong>Edge Titanium</strong> <br>AWD 3.5 V6",
+    "lead": "Teto Solar Panorâmico + Sistema de DVD + SYNC® 3 com Android Auto e Apple CarPlay"
+  },
+
+  "menu": {
+    "info": {
+      "label": "Info",
+      "icon": "fas fa-2x fa-car-alt",
+      "target": "infos"
+    },
+    "galeria": {
+      "label": "Galeria",
+      "icon": "fas fa-2x fa-images",
+      "target": "fotos"
+    },
+    "videos": {
+      "label": "Vídeos",
+      "icon": "fab fa-2x fa-youtube",
+      "target": "videos"
+    }
+  },
+
+  "cores": {
+    "0": {
+      "id": "azul-belize",
+      "title": "Azul <br>Belize",
+      "label": "Azul Belize",
+      "icon": "images/colors/azul-belize.png"
+    },
+    "1": {
+      "id": "branco-siberia",
+      "title": "Branco <br>Sibéria",
+      "label": "Branco Sibéria",
+      "icon": "images/colors/branco-siberia.png"
+    },
+    "2": {
+      "id": "cinza-moscou",
+      "title": "Cinza <br>Moscou",
+      "label": "Cinza Moscou",
+      "icon": "images/colors/cinza-moscou.png"
+    },
+    "3": {
+      "id": "prata-dublin",
+      "title": "Prata <br>Dublin",
+      "label": "Prata Dublin",
+      "icon": "images/colors/prata-dublin.png"
+    },
+    "4": {
+      "id": "preto-asturias",
+      "title": "Preto <br>Astúrias",
+      "label": "Preto Astúrias",
+      "icon": "images/colors/preto-asturias.png"
+    },
+    "5": {
+      "id": "vermelho-bucareste",
+      "title": "Vermelho <br>Bucareste",
+      "label": "Vermelho Bucareste",
+      "icon": "images/colors/vermelho-bucareste.png"
+    },
+    "6": {
+      "id": "vermelho-vermont",
+      "title": "Vermelho <br>Vermont",
+      "label": "Vermelho Vermont",
+      "icon": "images/colors/vermelho-vermont.png"
+    }
+  },
+
+  "acabamento": {
+    "0": {
+      "id": "dark-ceramic",
+      "title": "Dark Ceramic",
+      "icon": "images/colors/dark-ceramic.png"
+    },
+    "1": {
+      "id": "ebony",
+      "title": "Ebony",
+      "icon": "images/colors/ebony.png"
+    },
+    "2": {
+      "id": "soft-ceramic",
+      "title": "Soft Ceramic",
+      "icon": "images/colors/soft-ceramic.png"
+    }
+  },
+
+  "financiamento": {
+    "preco": "232.800",
+    "entrada": "117.500",
+    "parcelas": {
+      "min": 6,
+      "max": 48,
+      "default": 27
+    }
+  }
+}
